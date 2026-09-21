@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua Monge | Mechanical Engineering Portfolio</title>
+    <!-- Google Fonts for a professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --secondary-bg: #f8f9fa;
+            --text-color: #1a1a1b;
+            --text-muted: #555;
+            --accent-color: #00a3e0; /* Inspired by the PDF header blue */
+            --card-border: #e1e4e8;
+            --header-bg: #00a3e0;
+            --header-text: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --secondary-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --card-border: #333;
+            --header-bg: #1a1a1a;
+            --header-text: #00a3e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 2rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .contact-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid currentColor;
+            color: currentColor;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* --- Main Layout --- */
+        container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro-section h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Project Cards --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--secondary-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-header {
+            background: var(--accent-color);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h2 {
+            font-size: 1.25rem;
+            text-transform: uppercase;
+        }
+
+        /* --- Project Images --- */
+
+        .project-images {
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            background: var(--secondary-bg);
+        }
+
+        /* Suspension project: 3 images in one centered row */
+        .project-images.three-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            justify-items: center;
+        }
+
+        .project-images.three-images img {
+            width: 100%;
+            height: 280px;
+            object-fit: contain;
+        }
+
+        /* Projects that use one combined JPEG */
+        .project-images.single-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .project-images.single-image img {
+            display: block;
+            max-width: 850px;
+            width: 80%;
+            max-height: 320px;
+            object-fit: contain;
+        }
+
+        /* Keep image backgrounds clean */
+        .project-images img {
+            background: white;
+            border-radius: 6px;
+        }
+
+        /* Mobile layout */
+        @media (max-width: 850px) {
+            .project-images.three-images {
+            grid-template-columns: 1fr;
+        }
+
+            .project-images.three-images img {
+            height: auto;
+            max-height: 350px;
+        }
+
+            .project-images.single-image img {
+            width: 100%;
+            height: auto;
+            }
+        }          
+        .project-content {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 850px) {
+            .project-content { grid-template-columns: 1fr; }
+            header { flex-direction: column; text-align: center; gap: 1rem; }
+        }
+
+        .column h3 {
+            font-size: 1rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .column ul {
+            list-style: none;
+        }
+
+        .column ul li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .column ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: rgba(0, 163, 224, 0.1);
+            color: var(--accent-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 2px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="user-info">
+            <h1>JOSHUA MONGE</h1>
+            <p>Mechanical Engineering | UC Riverside</p>
+        </div>
+        <div class="contact-info">
+            <p>📞 (951)-903-3296</p>
+            <p>✉️ mongejosh@gmail.com</p>
+        </div>
+        <button class="theme-toggle" id="themeToggle">🌙 DARK MODE</button>
+    </header>
+
+    <div class="container">
+        
+        <section class="intro-section">
+            <p>A showcase of mechanical design, structural analysis, and generative optimization projects.</p>
+        </section>
+
+        <div class="project-grid">
+
+            <!-- Project 1 -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2>Energy Harvesting Vehicle Suspension</h2>
+                </div>
+
+                <div class="project-images three-images">
+                    <img src="suspension-1.jpeg" alt="CAD model of energy harvesting suspension test rig">
+                    <img src="suspension-2.jpeg" alt="Physical energy harvesting suspension prototype">
+                    <img src="suspension-3.jpeg" alt="Suspension system diagram">
+                </div>
+ 
+                <div class="project-content">
+                    <div class="column">
+                        <h3>What?</h3>
+                        <ul>
+                            <li>Develop a suspension test rig simulating vertical vehicle motion.</li>
+                            <li>Harvest dissipated energy using an electromagnetic generator.</li>
+                            <li>Modular prototype developed within a $750 budget.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>How?</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tech-tag">Fusion 360</span>
+                            <span class="tech-tag">CNC Machining</span>
+                            <span class="tech-tag">Additive Manufacturing</span>
+                            <span class="tech-tag">FEA</span>
+                            <span class="tech-tag">MATLAB/Simulink</span>
+                        </div>
+                        <ul>
+                            <li>Modeled assembly and components in Fusion 360.</li>
+                            <li>Performed static stress analysis under suspension loading.</li>
+                            <li>Tested assembly under cyclic loading.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Results?</h3>
+                        <ul>
+                            <li>Generated 1.3V from motion.</li>
+                            <li>3.5s settling time & 5.3% overshoot.</li>
+                            <li>Measured 1.64 Hz natural frequency (vs 1.65 Hz theoretical).</li>
+                            <li>Integrated mechanical, electrical, and control subsystems.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2>Truss Bridge Structural Analysis</h2>
+                </div>
+
+                <div class="project-images single-image">
+                    <img src="truss-bridge.jpeg" alt="Truss bridge CAD model, FEA analysis, and physical prototype">
+                </div>
+
+                <div class="project-content">
+                    <div class="column">
+                        <h3>What?</h3>
+                        <ul>
+                            <li>Design and fabricate a lightweight truss bridge.</li>
+                            <li>Maximize load-to-weight ratio.</li>
+                            <li>Predict internal member loading and structural failure.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>How?</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tech-tag">SOLIDWORKS</span>
+                            <span class="tech-tag">Method of Sections</span>
+                            <span class="tech-tag">Static Equilibrium</span>
+                            <span class="tech-tag">FEA</span>
+                        </div>
+                        <ul>
+                            <li>Applied static equilibrium to calculate tensile/compressive forces.</li>
+                            <li>Performed FEA to identify critical members.</li>
+                            <li>Fabricated and experimentally load-tested final structure.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Results?</h3>
+                        <ul>
+                            <li>Achieved 457% structural efficiency.</li>
+                            <li>Supported a load of 4.8 kg.</li>
+                            <li>Successfully matched physical load-test results with predicted behavior.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2>Lightweight Generative Design (Coat Hanger)</h2>
+                </div>
+
+                <div class="project-images single-image">
+                    <img src="coat-hanger.jpeg" alt="Original and generatively optimized coat hanger designs">
+                </div>
+
+                <div class="project-content">
+                    <div class="column">
+                        <h3>What?</h3>
+                        <ul>
+                            <li>Redesign a coat hanger using aluminum.</li>
+                            <li>Reduce weight and material while maintaining structural strength.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>How?</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tech-tag">Fusion 360</span>
+                            <span class="tech-tag">Generative Design</span>
+                            <span class="tech-tag">Force Transmission Analysis</span>
+                        </div>
+                        <ul>
+                            <li>Analyzed potential failure locations and load paths.</li>
+                            <li>Applied Generative Design to create lightweight geometries.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Results?</h3>
+                        <ul>
+                            <li>Reduced mass by 47%.</li>
+                            <li>Improved durability with a Factor of Safety (FOS) of 4.306.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2>Bracket Generative Optimization</h2>
+                </div>
+
+                <div class="project-images single-image">
+                    <img src="bracket.jpeg" alt="Original and generatively optimized structural bracket">
+                </div>
+
+                <div class="project-content">
+                    <div class="column">
+                        <h3>What?</h3>
+                        <ul>
+                            <li>Optimize a structural bracket maintaining a Factor of Safety (FOS) of 3.</li>
+                            <li>Reduce unnecessary material.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>How?</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tech-tag">FEA</span>
+                            <span class="tech-tag">Structural Optimization</span>
+                            <span class="tech-tag">Static Stress Analysis</span>
+                        </div>
+                        <ul>
+                            <li>Defined loading conditions and preserved regions.</li>
+                            <li>Produced lightweight alternative geometries via Fusion 360.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Results?</h3>
+                        <ul>
+                            <li>Bracket exceeded target with FOS of 3.211.</li>
+                            <li>Reduced overall mass by 43%.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Joshua Monge | University of California, Riverside | Mechanical Engineering Portfolio</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                body.removeAttribute('data-theme');
+                themeToggle.innerText = '🌙 DARK MODE';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.innerText = '☀️ LIGHT MODE';
+            }
+        });
+    </script>
+</body>
+</html>
