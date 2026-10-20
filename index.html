@@ -245,6 +245,31 @@
             color: var(--text-muted);
         }
 
+
+        /* Jet engine: two balanced, centered images */
+        .project-images.jet-engine-images {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            justify-items: center;
+            align-items: center;
+        }
+
+        .project-images.jet-engine-images img {
+            width: 100%;
+            height: 320px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 850px) {
+            .project-images.jet-engine-images {
+                grid-template-columns: 1fr;
+            }
+            .project-images.jet-engine-images img {
+                height: auto;
+                max-height: 320px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -317,7 +342,52 @@
                 </div>
             </article>
 
-            <!-- Project 2 -->
+
+            <!-- Project 2: Jet Engine -->
+            <article class="project-card">
+                <div class="project-header">
+                    <h2>Jet Engine CAD Modeling and Assembly</h2>
+                </div>
+
+                <div class="project-images jet-engine-images">
+                    <img src="jet_engine.jpeg" alt="SOLIDWORKS complete jet engine CAD assembly" loading="lazy">
+                    <img src="exhaust.png" alt="SOLIDWORKS detailed rear casing and exhaust assembly" loading="lazy">
+                </div>
+
+                <div class="project-content">
+                    <div class="column">
+                        <h3>What?</h3>
+                        <ul>
+                            <li>Design and assemble a detailed 3D jet engine model in SOLIDWORKS.</li>
+                            <li>Recreate major engine components and demonstrate mechanical integration and rotational functionality.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>How?</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <span class="tech-tag">SOLIDWORKS</span>
+                            <span class="tech-tag">Parametric Modeling</span>
+                            <span class="tech-tag">Assembly Mates</span>
+                            <span class="tech-tag">Mechanical Design</span>
+                        </div>
+                        <ul>
+                            <li>Individually modeled turbine blades, rotor assemblies, exhaust sections, outer casing, and mechanical fasteners.</li>
+                            <li>Applied parametric modeling techniques to create complex geometries and mechanical interfaces.</li>
+                            <li>Used assembly mates to constrain components, establish alignment, and enable rotational movement.</li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Results?</h3>
+                        <ul>
+                            <li>Completed a detailed jet engine CAD assembly with rotational functionality.</li>
+                            <li>Demonstrated mechanical component integration and assembly alignment.</li>
+                            <li>Developed SOLIDWORKS skills in part modeling, assembly design, and mechanical motion.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3: Truss Bridge -->
             <article class="project-card">
                 <div class="project-header">
                     <h2>Truss Bridge Structural Analysis</h2>
@@ -361,7 +431,7 @@
                 </div>
             </article>
 
-            <!-- Project 3 -->
+            <!-- Project 5 -->
             <article class="project-card">
                 <div class="project-header">
                     <h2>Lightweight Generative Design (Coat Hanger)</h2>
@@ -401,7 +471,7 @@
                 </div>
             </article>
 
-            <!-- Project 4 -->
+            <!-- Project 5 -->
             <article class="project-card">
                 <div class="project-header">
                     <h2>Bracket Generative Optimization</h2>
